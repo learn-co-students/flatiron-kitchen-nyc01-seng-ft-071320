@@ -21,6 +21,15 @@ class IngredientsController < ApplicationController
     def edit
     end
 
+    def update
+        @ingredient.update(ingredient_params)
+        if @ingredient.save
+          redirect_to ingredients_path
+        else
+          redirect_to edit_ingredient_path
+        end
+    end
+
     private
 
     def set_ingredient
@@ -30,5 +39,5 @@ class IngredientsController < ApplicationController
     def ingredient_params
         params.require(:ingredient).permit(:name)
     end
-    
+
 end
